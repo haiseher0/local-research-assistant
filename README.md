@@ -18,7 +18,7 @@ Built using **LangChain**, **FAISS** (Vector DB), and **Llama 3** (via Ollama).
 
 1. Clone the repo:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/local-research-assistant.git](https://github.com/YOUR_USERNAME/local-research-assistant.git)
+   git clone [https://github.com/haiseher0/local-research-assistant.git](https://github.com/YOUR_USERNAME/local-research-assistant.git)
    cd local-research-assistant
 
 2. Install dependencies:
