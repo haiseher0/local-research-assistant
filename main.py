@@ -65,7 +65,7 @@ if __name__ == "__main__":
     rag = ResearchRAG(pdf_path=pdf_file)
     rag.ingest()
 
-    # 2. Интерактивный цикл
+
     print("\n" + "="*50)
     print("🤖 Research Assistant Ready! (Type 'exit' to quit)")
     print("="*50)
