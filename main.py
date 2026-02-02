@@ -9,7 +9,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
-# Этот код НЕ использует langchain.chains, поэтому ошибка исчезнет
 class ResearchRAG:
     def __init__(self, pdf_path: str):
         self.pdf_path = pdf_path
@@ -41,10 +40,8 @@ class ResearchRAG:
 
         print(f"\nThinking on: {question}...")
         
-        # 1. Retriever (Искатель)
         retriever = self.vector_store.as_retriever(search_kwargs={"k": 3})
         
-        # 2. Template (Шаблон запроса)
         template = """Answer the question based only on the following context:
         {context}
 
@@ -52,11 +49,9 @@ class ResearchRAG:
         """
         prompt = ChatPromptTemplate.from_template(template)
 
-        # 3. Функция форматирования документов
         def format_docs(docs):
             return "\n\n".join([d.page_content for d in docs])
 
-        # 4. Цепочка (Chain) собранная вручную
         rag_chain = (
             {"context": retriever | format_docs, "question": RunnablePassthrough()}
             | prompt
@@ -67,10 +62,6 @@ class ResearchRAG:
         return rag_chain.invoke(question)
 
 if __name__ == "__main__":
-    # 1. Инициализация (как и было)
-    # Убедись, что paper.pdf на месте
-    pdf_file = "paper.pdf"
-    
     rag = ResearchRAG(pdf_path=pdf_file)
     rag.ingest()
 
@@ -80,19 +71,15 @@ if __name__ == "__main__":
     print("="*50)
 
     while True:
-        # Ждем ввода от пользователя
         user_input = input("\nUser: ")
 
-        # Проверка на выход
         if user_input.lower() in ["exit", "quit", "q"]:
             print("Goodbye!")
             break
-        
-        # Если ввели пустую строку — пропускаем
+
         if not user_input.strip():
             continue
 
-        # Отправляем вопрос в RAG
         try:
             print(rag.query(user_input))
         except Exception as e:
