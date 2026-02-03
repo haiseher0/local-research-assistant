@@ -62,9 +62,16 @@ class ResearchRAG:
         return rag_chain.invoke(question)
 
 if __name__ == "__main__":
-    rag = ResearchRAG(pdf_path=pdf_file)
-    rag.ingest()
+    import os
 
+    target_pdf = "paper.pdf"
+
+    if not os.path.exists(target_pdf):
+        print(f"Error: File '{target_pdf}' is not found!")
+        exit()
+
+    rag = ResearchRAG(pdf_path=target_pdf)
+    rag.ingest()
 
     print("\n" + "="*50)
     print("🤖 Research Assistant Ready! (Type 'exit' to quit)")
