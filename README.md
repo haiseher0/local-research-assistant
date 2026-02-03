@@ -1,4 +1,4 @@
-# Local Research Assistant (RAG Pipeline) 🧠
+# Local Research Assistant (RAG Pipeline)
 
 An offline, privacy-focused AI assistant for analyzing scientific papers.
 Built using **LangChain**, **FAISS** (Vector DB), and **Llama 3** (via Ollama).
